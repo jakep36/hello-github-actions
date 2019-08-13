@@ -1,17 +1,13 @@
-name: CI
+FROM debian:9.5-slim
 
-on: [push]
+LABEL "com.github.actions.name"="Hello World"
+LABEL "com.github.actions.description"="Write arguments to the standard output"
+LABEL "com.github.actions.icon"="mic"
+LABEL "com.github.actions.color"="purple"
 
-jobs:
-  build:
+LABEL "repository"="http://github.com/octocat/hello-world"
+LABEL "homepage"="http://github.com/actions"
+LABEL "maintainer"="Octocat <octocat@github.com>"
 
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@master
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+ADD entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
